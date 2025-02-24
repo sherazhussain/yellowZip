@@ -1,0 +1,44 @@
+<!-- header.component.html -->
+<header class="bg-transparent glassmorphism w-full absolute p-2 flex justify-between items-center">
+  <div class="flex items-center gap-2 w-full">
+      <img src="/assets/logo.png" alt="Logo" class="self-between h-12 mr-4 cursor-pointer" routerLink="home"/>
+      
+      <button class="md:hidden flex justify-end w-full" (click)="toggleMenu()">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+      </button>
+      
+      <input type="text" placeholder="Car Detailer Bitz | Houston, TX, 77077" class="bg-transparent border border-black rounded-full p-2 w-45 hidden md:block" />
+      <button class="border border-black rounded-full px-4 py-2 text-black hidden md:block" routerLink="about">About</button>
+      <button class="border border-black rounded-full px-4 py-2 text-black hidden md:block" routerLink="advertise">Advertise</button>
+  </div>
+
+  <div [ngClass]="{'hidden': !isMenuOpen, 'block': isMenuOpen}" class="absolute top-16 left-0 !z-20 w-full bg-white shadow-md md:hidden">
+      <input type="text" placeholder="Search..." class="border rounded p-2 mt-2 ml-2 w-98" />
+      <button class="border border-black rounded-full px-4 py-2 text-black mt-2 ml-2" routerLink="about">About</button>
+      <button class="border border-black rounded-full px-4 py-2 text-black mt-2 ml-2" routerLink="advertise">Advertise</button>
+      <ul class="flex flex-col p-4">
+          <li *ngFor="let button of actionButtons">
+              <button class="flex items-center rounded p-2 w-full">
+                  <img [src]="button.icon" alt="{{button.title}}" class="h-6 mr-2" />
+                  {{ button.title }}
+              </button>
+          </li>
+      </ul>
+  </div>
+
+  <div class="hidden md:flex space-x-4">
+      <input type="text" placeholder="Search..." class="border rounded p-2 hidden" />
+      <button class="border border-black rounded-full px-4 py-2 text-black hidden" routerLink="about">About</button>
+      <button class="border border-black rounded-full px-4 py-2 text-black hidden" routerLink="advertise">Advertise</button>
+      <ul class="flex space-x-4 w-37rem">
+          <li *ngFor="let button of actionButtons" class="text-xs">
+              <button class="flex flex-col items-center rounded p-2">
+                  <img [src]="button.icon" alt="{{button.title}}" class="h-6 mr-2" />
+                  {{ button.title }}
+              </button>
+          </li>
+      </ul>
+  </div>
+</header>
